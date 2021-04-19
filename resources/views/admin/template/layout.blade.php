@@ -36,10 +36,10 @@
                     </li>
                     @if (Auth::user()->role == 1)
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('author.index')}}">Authors</a>
+                            <a class="nav-link" href="{{route('authors.index')}}">Authors</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Books</a>
+                            <a class="nav-link" href="{{route('books.index')}}">Books</a>
                         </li>
                     @endif
                 </ul>
@@ -53,12 +53,6 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit" class="btn">{{ __('Log Out') }}</button>
-
-                                {{-- <x-jet-dropdown-link href="{{ route('logout') }}"
-                                         onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-
-                                </x-jet-dropdown-link> --}}
                             </form>
                         </div>
                     </li>

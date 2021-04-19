@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
+use App\Models\Book;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $books = Book::all();
+        $authors = Author::all();
+        return view('admin.dashboard', compact('books', 'authors'));
     }
 }

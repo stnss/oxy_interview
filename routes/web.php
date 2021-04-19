@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\AuthorsController;
+use App\Http\Controllers\BooksController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
@@ -15,11 +16,10 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::middleware(['web', 'auth'])->group(function() {
-    Route::get('/dashboard', [HomeController::class, 'index'])->name('home.index');
-    Route::resource('/author', AuthorController::class);
+    Route::get('/', [HomeController::class, 'index'])->name('home.index');
+    Route::group(['middleware' => 'role:1'], function () {
+        Route::resource('authors', AuthorsController::class);
+        Route::resource('books', BooksController::class);
+    });
 });
