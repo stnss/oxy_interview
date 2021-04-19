@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
@@ -19,5 +20,6 @@ Route::get('/', function () {
 });
 
 Route::middleware(['web', 'auth'])->group(function() {
-    Route::get('/dashboard', [HomeController::class, 'index']);
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('home.index');
+    Route::resource('/author', AuthorController::class);
 });

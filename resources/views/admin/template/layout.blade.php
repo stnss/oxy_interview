@@ -31,14 +31,17 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('home.index') }}">Home <span
+                                class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Authors</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Books</a>
-                    </li>
+                    @if (Auth::user()->role == 1)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('author.index')}}">Authors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Books</a>
+                        </li>
+                    @endif
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
@@ -63,8 +66,9 @@
             </div>
         </nav>
     </div>
-
-    @yield('content')
+    <div class="container p-2">
+        @yield('content')
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
         integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous">
